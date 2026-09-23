@@ -7,14 +7,14 @@ internal sealed class MainForm : Form
     private readonly Button install = new() { Text = "Install", AutoSize = true };
     private readonly Button repair = new() { Text = "Repair", AutoSize = true };
     private readonly Button uninstall = new() { Text = "Uninstall", AutoSize = true };
-    private readonly Label status = new() { Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft };
+    private readonly Label status = new() { AutoSize = true, TextAlign = ContentAlignment.MiddleLeft };
     private readonly InstallerEngine engine;
 
     public MainForm()
     {
         Text = "RainbowBarrels Installer — 0.1.0-rc.1";
-        MinimumSize = new Size(710, 285);
-        Size = new Size(790, 310);
+        MinimumSize = new Size(730, 430);
+        Size = new Size(850, 490);
         StartPosition = FormStartPosition.CenterScreen;
         Font = new Font("Segoe UI", 10);
         engine = new InstallerEngine(AppContext.BaseDirectory);
@@ -37,18 +37,20 @@ internal sealed class MainForm : Form
         picker.Controls.Add(browse, 1, 0);
         var actions = new FlowLayoutPanel { Dock = DockStyle.Top, AutoSize = true };
         actions.Controls.AddRange([install, repair, uninstall]);
-        var layout = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(24), RowCount = 5 };
-        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-        layout.Controls.Add(heading);
-        layout.Controls.Add(description);
-        layout.Controls.Add(picker);
-        layout.Controls.Add(actions);
-        layout.Controls.Add(status);
-        Controls.Add(layout);
+        var layout = new TableLayoutPanel
+        {
+            Dock = DockStyle.Top, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Padding = new Padding(24), ColumnCount = 1, RowCount = 5
+        };
+        for (var row = 0; row < 5; row++) layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.Controls.Add(heading, 0, 0);
+        layout.Controls.Add(description, 0, 1);
+        layout.Controls.Add(picker, 0, 2);
+        layout.Controls.Add(actions, 0, 3);
+        layout.Controls.Add(status, 0, 4);
+        var viewport = new Panel { Dock = DockStyle.Fill, AutoScroll = true };
+        viewport.Controls.Add(layout);
+        Controls.Add(viewport);
         browse.Click += (_, _) => PickFolder();
         install.Click += async (_, _) => await Run(ActionKind.Install);
         repair.Click += async (_, _) => await Run(ActionKind.Repair);

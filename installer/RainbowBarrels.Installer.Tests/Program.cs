@@ -1,6 +1,8 @@
 using RainbowBarrels.Installer;
 using System.Text;
 using System.Text.Json;
+using System.Drawing;
+using System.Windows.Forms;
 
 if (args.Length is not (2 or 4) || args[0] != "--package" ||
     (args.Length == 4 && args[2] != "--game"))
@@ -15,8 +17,9 @@ try
     TestAtomicRollback(sourcePackage, temp);
     TestTamperedInput(sourcePackage, temp);
     TestInterruptedUninstall(sourcePackage, temp);
+    TestInstallerLayout();
     if (args.Length == 4) TestStockDecoder(args[3], sourcePackage);
-    Console.WriteLine("PASS: install, repair, surgical uninstall, unknown-input rejection, and install/uninstall rollback in disposable synthetic stock fixtures.");
+    Console.WriteLine("PASS: installer buttons visible at default/minimum sizes and reachable under 150% scaling; synthetic install, repair, surgical uninstall, unknown-input rejection, and rollback.");
 }
 finally { if (Directory.Exists(temp)) Directory.Delete(temp, true); }
 
@@ -208,6 +211,50 @@ static void TestStockDecoder(string game, string input)
     Check(Safe.Hash(logical) == logicalSha && logical.Length == 163671,
           "native game decoder matches independent Python stock record readback");
     Console.WriteLine("PASS: native Oodle decode on SHA-pinned, unrelated pristine game stock bundle (read-only).");
+}
+
+static void TestInstallerLayout()
+{
+    Exception? failure = null;
+    var thread = new Thread(() =>
+    {
+        try
+        {
+            using var form = new MainForm { Opacity = 0, ShowInTaskbar = false };
+            form.Show();
+            Application.DoEvents();
+            var viewport = form.Controls.OfType<Panel>().Single();
+            var layout = viewport.Controls.OfType<TableLayoutPanel>().Single();
+            var actions = layout.Controls.OfType<FlowLayoutPanel>().Single();
+            var buttons = actions.Controls.OfType<Button>().ToArray();
+            Check(buttons.Select(button => button.Text).SequenceEqual(new[] { "Install", "Repair", "Uninstall" }),
+                "all three installer actions exist");
+            void CheckVisible(string context)
+            {
+                form.PerformLayout();
+                layout.PerformLayout();
+                actions.PerformLayout();
+                Application.DoEvents();
+                var screen = viewport.RectangleToScreen(viewport.ClientRectangle);
+                foreach (var button in buttons)
+                    Check(screen.Contains(button.RectangleToScreen(button.ClientRectangle)),
+                        $"{button.Text} is outside the visible viewport at {context}");
+            }
+            CheckVisible("default window size");
+            form.Size = form.MinimumSize;
+            CheckVisible("minimum window size");
+            form.Scale(new SizeF(1.5f, 1.5f));
+            form.Size = form.MinimumSize;
+            viewport.ScrollControlIntoView(actions);
+            CheckVisible("150% layout scale after scrolling into view");
+            form.Hide();
+        }
+        catch (Exception error) { failure = error; }
+    });
+    thread.SetApartmentState(ApartmentState.STA);
+    thread.Start();
+    thread.Join();
+    if (failure is not null) throw new Exception("Installer layout regression", failure);
 }
 
 internal sealed class OfflineGuard : IGameGuard

@@ -34,6 +34,11 @@ fixtures do not prove acceptance of stock
 compressed release inputs; the recipient must test the release candidate on
 a clean, supported game installation.
 
+The WinForms layout test checks visibility of Install, Repair and Uninstall at
+the default and minimum window size and reachability after a 150% scale
+change. The action rows live inside a scrollable panel when system DPI or
+text size consumes more vertical space than the window can display.
+
 Generate the payload from authenticated, mod-owned candidate outputs:
 
 ```text

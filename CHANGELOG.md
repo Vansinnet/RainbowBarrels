@@ -9,3 +9,5 @@
   `prop_fire` templates.
 - Add a build-pinned Windows installer with authenticated custom-resource
   payload, install/repair/uninstall, receipts, and rollback.
+- Keep the installer action buttons accessible at Windows display scaling and
+  smaller window sizes.

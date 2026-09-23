@@ -15,7 +15,7 @@ from build_green_bundle import bundle
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "payload"
 BUILD = "24735202"
-VERSION = "0.1.0-rc.1"
+VERSION = "1.0.0"
 OODLE_SHA = "8595a4795f1e0c7f548598f3e2aa528b6be5456c6d934c665182eaecb04156c0"
 SOURCES = (
     ("explosion", "98bb14b1d247a0c8", ROOT / "analysis/hue-wheel-bundle-24735202",

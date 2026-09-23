@@ -1,5 +1,14 @@
 # RainbowBarrels changes
 
+## 1.0.0
+
+- Enable custom colors for both explosive barrels and fire barrels by default
+  on fresh installations; preserve each player's saved choices.
+- Promote the tested 360° barrel and ground-fire effects and Windows installer
+  from the release candidate without changing the effect resource contracts.
+- Document the RC uninstall prerequisite and user-reported RainbowFlame
+  coexistence test.
+
 ## 0.1.0-rc.1
 
 - Separate 0–359° colors for explosive-barrel and fire-barrel explosions.

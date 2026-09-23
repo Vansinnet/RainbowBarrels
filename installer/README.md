@@ -31,7 +31,7 @@ repair, uninstall, conflict rejection and failure rollback without touching
 the installed game. A RainbowFlame-owned sentinel file and load-order entry
 also remain byte-identical through the installer fixture lifecycle. Synthetic
 fixtures do not prove acceptance of stock
-compressed release inputs; the recipient must test the release candidate on
+compressed release inputs; the recipient should test the release on
 a clean, supported game installation.
 
 The WinForms layout test checks visibility of Install, Repair and Uninstall at

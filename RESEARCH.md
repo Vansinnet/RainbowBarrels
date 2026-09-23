@@ -600,8 +600,16 @@ bundles and the game's installed decoder, rebuilds the game-tested output
 hashes, and journals installation, repair and uninstall. Disposable synthetic
 stock fixtures passed install/repair/uninstall, deliberate interruption and
 rollback; read-only native Oodle decoding of an unrelated pristine stock
-bundle matched independent Python output. The real RC installer has **not**
-yet been tested against pristine copies of both target game bundles.
+bundle matched independent Python output. The user subsequently ran the RC
+installer against pristine copies of both target bundles: the
+`%LOCALAPPDATA%/RainbowBarrels/journals/20260923T194853739Z-438c8c25ce6c4983a79f9ac96fd334cb.json`
+install journal committed the exact tested bundle output hashes
+`a0a15fcde68bbd2d7a4ec0cd998bd7d143d2999d3d0b8a74baa60340b529cff9`
+and `7181ef9b900ad89bd5d43759c28f027fc3dbf9b2de68d0ff7beaa798c1900820`.
+The later `20260923T195428659Z-48c050d604574b3e89c19fc884965d04`
+uninstall journal committed, and read-only file hashes confirmed both
+bundles back at stock. The user reported RainbowBarrels and RainbowFlame
+worked together, but supplied no exact hue/mode trace for that joint test.
 
 `resource/check_rainbowflame_compatibility.py` compared the exact 1.2.0
 RainbowFlame release manifest (172 targets) and RainbowBarrels' 1,104 target
@@ -609,10 +617,11 @@ files: **zero shared paths**; both name Darktide Steam build `24735202` and
 executable `1.3.770.210`. The RainbowFlame `World.create_particles` hook
 selects only Soulblaze/staff/flamer impact names and forwards other effect
 names to the original. RainbowBarrels selects barrel and matched `prop_fire`
-names and preserves the hook-chain return. This supports file and selector
-coexistence but does not replace a live joint-mod test. RainbowFlame is not
-currently present in the user's installed `/mods` directory or its installer
-receipt directory; it must be installed separately to run the joint test.
+names and preserves the hook-chain return. The user later reported a live
+joint-mod test without conflict. RainbowFlame's read-only local journal shows
+an install committed, followed by a committed uninstall at
+`uninstall-20260923T195443517Z-f1bd1c84ac194d68b7549690732edf3b.json`.
+Neither mod is currently left installed in the observed game folder.
 
 Before migration, the RainbowBarrels game copy remained the manually staged
 development version. `resource/preview_rc_migration.py` passed read-only verification of
@@ -636,16 +645,21 @@ entry. Read-only `resource/preview_rc_clean_install.py` found the two stock
 inputs, all 1,102 added RC targets free and **zero blockers**. A fresh
 read-only RainbowFlame 1.2.0 preflight across 172 targets also found zero
 blockers. Neither the RC installer nor RainbowFlame has been run on the game
-after the rollback.
+at the instant of this preflight; the subsequent committed install/uninstall
+receipts and user joint-mod report above supersede that earlier state.
+
+Version 1.0.0 changes only the two fresh-install checkbox defaults from
+false to true and advances the installer/payload/documentation versions.
+Previously saved DMF settings are left intact. The final build still needs
+fresh-install GUI verification; the prior RC's tested resource-output hashes
+must remain the same. RC installations require an RC uninstall before 1.0,
+because the installer does not adopt receipts from a different version.
 
 ## Remaining work
 
 1. Check a barrel fire with VFX Swapper enabled at its stock setting and a
    separate, unrelated `prop_fire` if a normal mission provides one.
-2. Re-test both barrel types, a normal grenade,
-   setting changes, disable/re-enable and mission exit before a completion
-   claim. Verify that orange visual layers are not left in either explosion.
-3. Run the RC's WinForms Install/Repair/Uninstall on the now-clean supported
-   game and compare installed output hashes to the tested bundles. Install
-   RainbowFlame through its own separate official installer only with
-   appropriate approval or user action, then run one joint-mod mission.
+2. Validate 1.0.0 fresh-install default-on settings and its exact resource
+   output hashes, plus installer/ZIP hash/signing/AV gates before publication.
+3. A separate non-barrel fire, normal grenade, VFX Swapper on the final
+   bundle, mission transitions and server-process execution remain untested.

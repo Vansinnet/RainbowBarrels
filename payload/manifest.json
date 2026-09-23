@@ -1,7 +1,7 @@
 {
   "format": 1,
   "product": "RainbowBarrels",
-  "version": "0.1.0-rc.1",
+  "version": "1.0.0",
   "steamAppId": "1361210",
   "steamBuild": "24735202",
   "exeVersion": "1.3.770.210",
@@ -6646,8 +6646,8 @@
     {
       "target": "mods/RainbowBarrels/scripts/mods/RainbowBarrels/RainbowBarrels_data.lua",
       "payload": "RainbowBarrels/scripts/mods/RainbowBarrels/RainbowBarrels_data.lua",
-      "size": 1034,
-      "sha256": "031421bacde8aae5cf50fd50dbc37c3cfdee8b8b2ea7acdfaf5f86fce1b09625"
+      "size": 1032,
+      "sha256": "065fb7e0e8e4b06a2814469080aef79ee0d5fd1379fc3fbad6f870a5db63c09f"
     },
     {
       "target": "mods/RainbowBarrels/scripts/mods/RainbowBarrels/RainbowBarrels_localization.lua",

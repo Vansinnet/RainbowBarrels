@@ -12,7 +12,7 @@ internal sealed class MainForm : Form
 
     public MainForm()
     {
-        Text = "RainbowBarrels Installer — 0.1.0-rc.1";
+        Text = "RainbowBarrels Installer — 1.0.0";
         MinimumSize = new Size(730, 430);
         Size = new Size(850, 490);
         StartPosition = FormStartPosition.CenterScreen;
@@ -24,7 +24,7 @@ internal sealed class MainForm : Form
         };
         var description = new Label
         {
-            Text = "Release candidate for Steam build 24735202 / Darktide 1.3.770.210. " +
+            Text = "Release for Steam build 24735202 / Darktide 1.3.770.210. " +
                    "Requires DML and DMF. Darktide must be closed. " +
                    "Install reconstructs two game bundles from verified stock files and installs " +
                    "1,098 custom material streams with exact backups and rollback.",

@@ -36,7 +36,7 @@ def main():
                          "RainbowBarrels.Installer.deps.json", "RainbowBarrels.Installer.runtimeconfig.json",
                          "payload/manifest.json", "payload/inserts/ground.bin", "payload/inserts/explosion.bin"}
         manifest = json.loads(zipfile_reader.read("payload/manifest.json"))
-        if (manifest["product"] != "RainbowBarrels" or manifest["version"] != "0.1.0-rc.1"
+        if (manifest["product"] != "RainbowBarrels" or manifest["version"] != "1.0.0"
                 or manifest["steamBuild"] != "24735202" or manifest["exeVersion"] != "1.3.770.210"):
             raise ValueError("Installer and game version profile")
         actual_bundles = {row["target"]: row["outputSha256"] for row in manifest["bundles"]}

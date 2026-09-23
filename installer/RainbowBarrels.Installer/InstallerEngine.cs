@@ -84,7 +84,7 @@ internal sealed class InstallerEngine
     public Manifest LoadManifest()
     {
         var manifest = Safe.Read<Manifest>(Safe.PathUnder(package, "payload/manifest.json"));
-        if (manifest.Format != 1 || manifest.Product != "RainbowBarrels" || manifest.Version != "0.1.0-rc.1" ||
+        if (manifest.Format != 1 || manifest.Product != "RainbowBarrels" || manifest.Version != "1.0.0" ||
             manifest.Bundles.Count != 2 || manifest.Streams.Count != 1098 || manifest.ModFiles.Count != 4)
             throw new InvalidDataException("Wrong RainbowBarrels release payload.");
         var unique = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

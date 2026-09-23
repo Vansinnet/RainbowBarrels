@@ -68,6 +68,9 @@ static (string Root, string Package, string State, Manifest Manifest, byte[][] S
     }
     Directory.CreateDirectory(Safe.PathUnder(root, "mods"));
     File.WriteAllText(Safe.PathUnder(root, "mods/mod_load_order.txt"), "dmf\nRainbowFlame\n", new UTF8Encoding(false));
+    var companion = Safe.PathUnder(root, "mods/RainbowFlame/RainbowFlame.mod");
+    Directory.CreateDirectory(Path.GetDirectoryName(companion)!);
+    File.WriteAllText(companion, "companion-owned fixture bytes", new UTF8Encoding(false));
     Safe.Write(Path.Combine(package, "payload", "manifest.json"), manifest);
     return (root, package, state, manifest, stock);
 }
@@ -141,6 +144,8 @@ static void TestInstallRepairUninstall(string input, string temp)
           manifest.ModFiles.All(recipe => !File.Exists(Safe.PathUnder(root, recipe.Target))),
         "only owned additions removed");
     Check(File.ReadAllText(loadOrder) == "dmf\nRainbowFlame\nVortexOtherMod\n", "unrelated load order preserved");
+    Check(File.ReadAllText(Safe.PathUnder(root, "mods/RainbowFlame/RainbowFlame.mod")) ==
+          "companion-owned fixture bytes", "RainbowFlame-owned file preserved throughout lifecycle");
 }
 
 static void TestAtomicRollback(string input, string temp)

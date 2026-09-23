@@ -28,7 +28,9 @@ stock bundle and game's Oodle decoder and compares its decoded SHA-256 with an
 independent Python decoding. The other tests generate **synthetic** stock
 bundles in `%LOCALAPPDATA%\Temp\opencode`; they test the real payload's install,
 repair, uninstall, conflict rejection and failure rollback without touching
-the installed game. Synthetic fixtures do not prove acceptance of stock
+the installed game. A RainbowFlame-owned sentinel file and load-order entry
+also remain byte-identical through the installer fixture lifecycle. Synthetic
+fixtures do not prove acceptance of stock
 compressed release inputs; the recipient must test the release candidate on
 a clean, supported game installation.
 

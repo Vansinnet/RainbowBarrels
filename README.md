@@ -13,7 +13,18 @@ modified. Other liquid fire keeps its original effects.
 - Microsoft [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/10.0), x64.
 - The two supported stock game bundles must be intact before the first
   installer run. A manually staged development copy or another resource
-  replacement is not a stock installation and cannot be adopted.
+replacement at **those two paths** cannot be adopted. Other mods do not
+need to be removed merely because they are installed.
+
+If you have the earlier manually staged RainbowBarrels development build,
+restore **only RainbowBarrels-owned** bundles, custom material streams and
+Lua files using its hash-pinned development receipts before trying the RC
+installer in that same game folder. The workspace tool
+`resource/preview_rc_migration.py` checks the complete reverse-order chain
+without altering the game. Its report must pass before any restoration;
+do not overwrite the Vortex load order or remove unrelated mods. The current
+development install is not an installer-owned installation, so the RC
+installer correctly refuses to adopt or uninstall it.
 
 ## Install the release candidate
 
@@ -56,6 +67,17 @@ The installer does not automatically adapt to a new game build. Wait for a
 compatible release after a Darktide update; never use an older installer to
 restore obsolete game assets. Vortex-managed RainbowBarrels installations
 and manual resource replacements are not currently adopted by this installer.
+
+### Together with RainbowFlame
+
+RainbowFlame 1.2.0 and RainbowBarrels 0.1.0-rc.1 target the same supported
+Darktide build but have **no overlapping managed resource or mod file paths**.
+They both hook `World.create_particles`, but select different named effects;
+each wrapper forwards the other effect unchanged. Install each with its own
+installer and retain both installer receipts and payloads. RainbowFlame is
+optional and is not included in this archive. Both installers edit only their
+own mod-load-order entry. This is source/manifest compatibility evidence;
+the two final release builds have not yet been observed running together.
 
 ## Tested behavior
 

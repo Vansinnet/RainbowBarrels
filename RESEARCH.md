@@ -590,6 +590,44 @@ off-state evidence; no new transient barrel log was recorded for them. This
 supports the setting's new-fire isolation without claiming a separate
 non-barrel `prop_fire` context was identified in either screenshot.
 
+### RC installer and RainbowFlame coexistence
+
+The user requested a RainbowFlame-style installer and private, unsigned
+0.1.0-rc.1 candidate. `resource/build_release_payload.py` packages only
+custom resource records and 1,098 authored material streams, never entire
+stock bundles. The .NET 10 installer authenticates the exact two stock
+bundles and the game's installed decoder, rebuilds the game-tested output
+hashes, and journals installation, repair and uninstall. Disposable synthetic
+stock fixtures passed install/repair/uninstall, deliberate interruption and
+rollback; read-only native Oodle decoding of an unrelated pristine stock
+bundle matched independent Python output. The real RC installer has **not**
+yet been tested against pristine copies of both target game bundles.
+
+`resource/check_rainbowflame_compatibility.py` compared the exact 1.2.0
+RainbowFlame release manifest (172 targets) and RainbowBarrels' 1,104 target
+files: **zero shared paths**; both name Darktide Steam build `24735202` and
+executable `1.3.770.210`. The RainbowFlame `World.create_particles` hook
+selects only Soulblaze/staff/flamer impact names and forwards other effect
+names to the original. RainbowBarrels selects barrel and matched `prop_fire`
+names and preserves the hook-chain return. This supports file and selector
+coexistence but does not replace a live joint-mod test. RainbowFlame is not
+currently present in the user's installed `/mods` directory or its installer
+receipt directory; it must be installed separately to run the joint test.
+
+The current RainbowBarrels game copy remains the manually staged development
+version. `resource/preview_rc_migration.py` passed read-only verification of
+eleven development receipts in their exact reverse order: two target bundles
+would reach pinned stock hashes `9086f577...` and `775762aa...`; all 1,098
+owned custom streams and its mod folder would be removed, while every other
+Vortex line is preserved. A unique 1,105-file/51,628,950-byte SHA-256
+snapshot was taken under
+`analysis/deployment-runs/20260923T191409Z-1ef8c587-rc-migration-snapshot/`,
+manifest SHA-256
+`4c2de84586eff9f01bc46e2189270f2d4eb38f649e91481ee55b300631c952ca`.
+The snapshot and preview **did not change the game**. Applying the rollback
+and installing either RC or RainbowFlame still require Darktide closed and
+their own explicit authorization.
+
 ## Remaining work
 
 1. Check a barrel fire with VFX Swapper enabled at its stock setting and a

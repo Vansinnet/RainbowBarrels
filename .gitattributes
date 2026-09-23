@@ -1,0 +1,13 @@
+*.lua text eol=lf
+*.mod text eol=lf
+*.py text eol=lf
+*.cs text eol=lf
+*.csproj text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+LICENSE text eol=lf
+NOTICE text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+payload/inserts/** -text
+payload/materials/** -text

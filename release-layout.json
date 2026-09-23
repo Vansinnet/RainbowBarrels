@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "profile": "installer",
+  "package": {
+    "payload": [
+      { "source": "RainbowBarrels.mod", "destination": "RainbowBarrels/RainbowBarrels.mod" },
+      { "source": "scripts/mods/RainbowBarrels/RainbowBarrels.lua", "destination": "RainbowBarrels/scripts/mods/RainbowBarrels/RainbowBarrels.lua" },
+      { "source": "scripts/mods/RainbowBarrels/RainbowBarrels_data.lua", "destination": "RainbowBarrels/scripts/mods/RainbowBarrels/RainbowBarrels_data.lua" },
+      { "source": "scripts/mods/RainbowBarrels/RainbowBarrels_localization.lua", "destination": "RainbowBarrels/scripts/mods/RainbowBarrels/RainbowBarrels_localization.lua" },
+      { "source": "payload/manifest.json", "destination": "payload/manifest.json" },
+      { "source": "payload/inserts", "destination": "payload/inserts" },
+      { "source": "payload/materials", "destination": "payload/materials" }
+    ],
+    "documentation": [
+      { "source": "README.md", "destination": "README.md" },
+      { "source": "CHANGELOG.md", "destination": "CHANGELOG.md" }
+    ],
+    "licenses": [
+      { "source": "LICENSE", "destination": "LICENSE" },
+      { "source": "NOTICE", "destination": "NOTICE" }
+    ]
+  },
+  "installer": {
+    "project": "installer/RainbowBarrels.Installer/RainbowBarrels.Installer.csproj",
+    "buildInputs": [
+      "installer/RainbowBarrels.Installer/RainbowBarrels.Installer.csproj",
+      "installer/RainbowBarrels.Installer/Manifest.cs",
+      "installer/RainbowBarrels.Installer/BundleCodec.cs",
+      "installer/RainbowBarrels.Installer/InstallerEngine.cs",
+      "installer/RainbowBarrels.Installer/Program.cs",
+      "installer/RainbowBarrels.Installer/MainForm.cs"
+    ],
+    "configuration": "Release",
+    "outputFiles": [
+      { "source": "RainbowBarrels.Installer.exe", "destination": "RainbowBarrels.Installer.exe" },
+      { "source": "RainbowBarrels.Installer.dll", "destination": "RainbowBarrels.Installer.dll" },
+      { "source": "RainbowBarrels.Installer.deps.json", "destination": "RainbowBarrels.Installer.deps.json" },
+      { "source": "RainbowBarrels.Installer.runtimeconfig.json", "destination": "RainbowBarrels.Installer.runtimeconfig.json" }
+    ]
+  }
+}

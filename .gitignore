@@ -1,0 +1,9 @@
+# Extracted stock assets and offline shader research are not release payloads.
+/analysis/
+/.payload-build-*/
+/installer/**/bin/
+/installer/**/obj/
+/.vs/
+**/__pycache__/
+*.pyc
+*.pdb

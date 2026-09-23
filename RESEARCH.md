@@ -614,8 +614,8 @@ coexistence but does not replace a live joint-mod test. RainbowFlame is not
 currently present in the user's installed `/mods` directory or its installer
 receipt directory; it must be installed separately to run the joint test.
 
-The current RainbowBarrels game copy remains the manually staged development
-version. `resource/preview_rc_migration.py` passed read-only verification of
+Before migration, the RainbowBarrels game copy remained the manually staged
+development version. `resource/preview_rc_migration.py` passed read-only verification of
 eleven development receipts in their exact reverse order: two target bundles
 would reach pinned stock hashes `9086f577...` and `775762aa...`; all 1,098
 owned custom streams and its mod folder would be removed, while every other
@@ -624,9 +624,19 @@ snapshot was taken under
 `analysis/deployment-runs/20260923T191409Z-1ef8c587-rc-migration-snapshot/`,
 manifest SHA-256
 `4c2de84586eff9f01bc46e2189270f2d4eb38f649e91481ee55b300631c952ca`.
-The snapshot and preview **did not change the game**. Applying the rollback
-and installing either RC or RainbowFlame still require Darktide closed and
-their own explicit authorization.
+The snapshot and preview **did not change the game**. The user then separately
+approved the scoped development rollback. With Darktide closed and the
+snapshot reverified, all eleven owned receipts were restored in reverse
+order. Both target bundles now match pristine stock SHA-256 values
+(`98bb14b1d247a0c8`: `9086f577b55278286bc5cd72de529300d61ba15d2612ad66a1cbe8b272d4da48`,
+`b224998193576995`: `775762aae54cfd5313856f8b097e2527774600e92df896d375e4af6b8916376d`).
+All 1,098 owned streams and the manual mod folder were removed. The Vortex
+load order lost only its owned RainbowBarrels line, preserving every other
+entry. Read-only `resource/preview_rc_clean_install.py` found the two stock
+inputs, all 1,102 added RC targets free and **zero blockers**. A fresh
+read-only RainbowFlame 1.2.0 preflight across 172 targets also found zero
+blockers. Neither the RC installer nor RainbowFlame has been run on the game
+after the rollback.
 
 ## Remaining work
 
@@ -635,6 +645,7 @@ their own explicit authorization.
 2. Re-test both barrel types, a normal grenade,
    setting changes, disable/re-enable and mission exit before a completion
    claim. Verify that orange visual layers are not left in either explosion.
-3. Build a user-facing installer and authenticated delta payload from the
-   tested build, with independent backups, installed-file ownership and rollback.
-   Do not distribute complete extracted game resources.
+3. Run the RC's WinForms Install/Repair/Uninstall on the now-clean supported
+   game and compare installed output hashes to the tested bundles. Install
+   RainbowFlame through its own separate official installer only with
+   appropriate approval or user action, then run one joint-mod mission.

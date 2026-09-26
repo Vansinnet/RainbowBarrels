@@ -1,5 +1,17 @@
 # Extracted stock assets and offline shader research are not release payloads.
 /analysis/
+/installer/
+/resource/
+/RESEARCH.md
+/bootstrap/
+/scripts/mods/RainbowBarrels/setup.lua
+/payload/inserts/
+/payload/manifest.json
+/RainbowBarrels.Setup.exe
+/setup-status-*.txt
+/bootstrap/**/bin/
+/bootstrap/**/obj/
+/bootstrap/publish/
 /.payload-build-*/
 /installer/**/bin/
 /installer/**/obj/

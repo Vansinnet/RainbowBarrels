@@ -2,7 +2,13 @@ RainbowBarrels is an unofficial Darktide mod and is not affiliated with
 Fatshark or Games Workshop. Warhammer 40,000 and Darktide and their game
 resources belong to their respective rights holders.
 
-The installer reconstructs modified resources from an authenticated, supported
-stock Darktide installation and custom additions. The release does not
-include complete extracted stock game bundles, the game decoder, the game
-executable, Darktide Mod Loader, Darktide Mod Framework, or LuaExec.
+The standalone release contains two modified Darktide resource bundles and
+1,098 custom material streams. It does not alter game files on disk or
+include the game decoder, game executable, Darktide Mod Loader, Darktide Mod
+Framework, or LuaExec.
+
+Asset Redirect v2 (`asset_redirect.lua` and `asset-redirect.dll`) is sourced
+from Wobin's Polychromatic 1.0.1 project:
+https://github.com/Wobin/Polychromatic . These third-party components remain
+the work of their respective authors and are not covered by RainbowBarrels'
+license.

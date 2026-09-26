@@ -1,5 +1,13 @@
 # RainbowBarrels changes
 
+## 1.1.0
+
+- Install by copying the complete mod folder into `mods` or using a mod
+  manager, with no separate installer or .NET runtime.
+- Serve two authored effect bundles and 1,098 material streams through Asset
+  Redirect v2 from Polychromatic 1.0.1, without editing the game's files.
+- Fall back to stock barrel effects if any required redirect is unavailable.
+
 ## 1.0.0
 
 - Enable custom colors for both explosive barrels and fire barrels by default

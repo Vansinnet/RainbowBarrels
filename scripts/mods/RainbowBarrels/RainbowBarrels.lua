@@ -1,6 +1,7 @@
 ---@class RainbowBarrelsMod : DMFMod
 local mod = get_mod("RainbowBarrels")
 local Explosion = require("scripts/utilities/attack/explosion")
+local redirects = mod:io_dofile("RainbowBarrels/scripts/mods/RainbowBarrels/redirects")
 
 local prefix = "content/fx/particles/rainbow_barrels/"
 local hue_parameter = "rainbow_barrels_hue"
@@ -42,6 +43,7 @@ local profiles = {
 }
 
 local enabled = false
+local resources_ready = false
 local selected = {}
 local hues = {}
 local selected_ground_filled
@@ -187,7 +189,15 @@ end)
 
 mod.on_enabled = function()
     update_settings()
-    enabled = true
+    enabled = resources_ready
+end
+
+mod.on_all_mods_loaded = function()
+    resources_ready = redirects and redirects.commit() or false
+    if resources_ready and mod:is_enabled() then
+        update_settings()
+        enabled = true
+    end
 end
 
 mod.on_disabled = function()
@@ -204,6 +214,9 @@ mod.on_unload = function()
     table.clear(recent_fire)
     table.clear(ground_owners)
     active_ground_fill = nil
+    if redirects then
+        redirects.clear()
+    end
 end
 
 mod.on_setting_changed = function()

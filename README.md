@@ -19,20 +19,26 @@ Gameplay damage, sound, networking and unrelated liquid fire are unchanged.
 
 1. Download `RainbowBarrels.zip` from the latest
    [GitHub release](https://github.com/Vansinnet/RainbowBarrels/releases).
-   Remove any earlier experimental `RainbowBarrels` mod folder first, then
-   extract the complete new folder into the game's `mods` folder,
+   Remove an older or experimental `RainbowBarrels` mod folder first so no
+   stale files remain, then extract the complete new folder into `mods`,
    so you have `mods/RainbowBarrels/RainbowBarrels.mod`. Keep the `bin/`,
    `payload/` and `scripts/` folders inside it. You can instead install the
    ZIP through your mod manager, as with Polychromatic.
 2. Add `RainbowBarrels` to `mods/mod_load_order.txt`, or enable it through your
    mod manager. Start Darktide and select colors in Mod Options.
 
-No installer executable, extra restart or .NET runtime is required. The mod
-serves its two rebuilt effect bundles and 1,098 material streams from its own
-folder using Asset Redirect v2. It does not edit files under the game's
-`bundle/` directory. All redirects must succeed before custom barrel effects
-are used; an incomplete or outdated installation leaves barrel effects stock.
-If a redirect reports `restart_required`, restart Darktide.
+No installer executable or .NET runtime is required. The mod includes the
+Asset Redirect v2 library and DLL from Polychromatic 1.0.1; **Polychromatic
+itself is not required**. On startup RainbowBarrels registers two replacements
+for stock bundles and 1,098 new material streams. The library checks both
+original bundles' SHA-256 hashes before serving the mod's files. No files
+under the game's `bundle/` directory are edited.
+
+Custom barrel effects are enabled only when **all 1,100 redirects** are active
+or shared. If a file is missing, an original bundle has changed, or the
+library cannot load, barrel effects stay stock and the mod reports the
+incomplete status in the log/chat. If it reports `restart_required`, restart
+Darktide. A normal installation takes effect on the first launch.
 
 ### Upgrading from an installer release
 

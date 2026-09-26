@@ -23,16 +23,18 @@ Gameplay damage, sound, networking and unrelated liquid fire are unchanged.
    stale files remain, then extract the complete new folder into `mods`,
    so you have `mods/RainbowBarrels/RainbowBarrels.mod`. Keep the `bin/`,
    `payload/` and `scripts/` folders inside it. You can instead install the
-   ZIP through your mod manager, as with Polychromatic.
+   ZIP through your mod manager.
 2. Add `RainbowBarrels` to `mods/mod_load_order.txt`, or enable it through your
    mod manager. Start Darktide and select colors in Mod Options.
 
-No installer executable or .NET runtime is required. The mod includes the
-Asset Redirect v2 library and DLL from Polychromatic 1.0.1; **Polychromatic
-itself is not required**. On startup RainbowBarrels registers two replacements
-for stock bundles and 1,098 new material streams. The library checks both
-original bundles' SHA-256 hashes before serving the mod's files. No files
-under the game's `bundle/` directory are edited.
+No installer executable or .NET runtime is required. The mod includes
+[Reforge](https://github.com/Vansinnet/Reforge) (`reforge.lua` and
+`bin/reforge.dll`), an open-source library that serves the mod's files in
+place of the game's while Darktide runs. On startup RainbowBarrels registers
+two replacements for stock bundles and 1,098 new material streams. Reforge
+checks both original bundles' SHA-256 hashes before serving the mod's files.
+No files under the game's `bundle/` directory are edited. Type `/reforge` in
+chat to list every replaced file and its state.
 
 Custom barrel effects are enabled only when **all 1,100 redirects** are active
 or shared. If a file is missing, an original bundle has changed, or the

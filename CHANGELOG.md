@@ -7,6 +7,9 @@
   instead of Polychromatic's closed-source Asset Redirect v2 DLL.
 - `/reforge` lists every replaced file and its state.
 - A DMF hot reload no longer reports `restart_required` for unchanged files.
+- The two replacement effect bundles are now Oodle-compressed like the game's
+  own bundles. Uncompressed chunks can crash Darktide's DirectStorage reader
+  ("Failed to decompress ... from package"). The effect contents are unchanged.
 
 ## 1.1.0
 

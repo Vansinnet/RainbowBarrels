@@ -59,9 +59,12 @@ mod version before custom effects return.
 ## Compatibility and testing
 
 RainbowFlame is optional and not included. The two mods target separate
-resource paths and select different effects in their hooks. A user confirmed
-the previous RainbowBarrels RC working alongside RainbowFlame; the new
-redirect-based combination has not been separately tested in game.
+resource paths and select different effects in their hooks; both use Reforge
+and share one copy of it. RainbowBarrels replaces no file that Polychromatic
+replaces, so the two can be installed together.
+
+Version 1.2.0 was confirmed in game: `/reforge` reported all 1,100 files
+active and the barrel effects worked, with no errors.
 
 Previous-release client testing in a regular dedicated-server mission
 confirmed the explosive-barrel effect, green fire-barrel ground fire at hue

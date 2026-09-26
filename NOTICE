@@ -7,8 +7,7 @@ The standalone release contains two modified Darktide resource bundles and
 include the game decoder, game executable, Darktide Mod Loader, Darktide Mod
 Framework, or LuaExec.
 
-Asset Redirect v2 (`asset_redirect.lua` and `asset-redirect.dll`) is sourced
-from Wobin's Polychromatic 1.0.1 project:
-https://github.com/Wobin/Polychromatic . These third-party components remain
-the work of their respective authors and are not covered by RainbowBarrels'
-license.
+Reforge (`scripts/mods/RainbowBarrels/reforge.lua` and `bin/reforge.dll`) is
+MIT-licensed, https://github.com/Vansinnet/Reforge . `bin/reforge.dll`
+includes MinHook (BSD-2-Clause); the licences are in `bin/REFORGE_NOTICES.txt`,
+which must be distributed with the DLL.

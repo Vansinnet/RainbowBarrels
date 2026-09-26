@@ -1,5 +1,13 @@
 # RainbowBarrels changes
 
+## Unreleased
+
+- Serve the two effect bundles and 1,098 material streams through Reforge,
+  an open-source asset redirect (`bin/reforge.dll` with source and build
+  provenance), instead of Polychromatic's Asset Redirect v2 DLL.
+- `/reforge` lists every replaced file and its state.
+- A DMF hot reload no longer reports `restart_required` for unchanged files.
+
 ## 1.1.0
 
 - Install by copying the complete mod folder into `mods` or using a mod

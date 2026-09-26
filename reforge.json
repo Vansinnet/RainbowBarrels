@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "redirects": [
+    {
+      "stock": "bundle/98bb14b1d247a0c8",
+      "file": "payload/bundles/98bb14b1d247a0c8",
+      "sha256": "9086f577b55278286bc5cd72de529300d61ba15d2612ad66a1cbe8b272d4da48"
+    },
+    {
+      "stock": "bundle/b224998193576995",
+      "file": "payload/bundles/b224998193576995",
+      "sha256": "775762aae54cfd5313856f8b097e2527774600e92df896d375e4af6b8916376d"
+    }
+  ],
+  "virtual_dirs": [
+    {
+      "stock": "bundle/data/rb",
+      "dir": "payload/materials"
+    }
+  ]
+}

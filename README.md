@@ -63,10 +63,9 @@ resource paths and select different effects in their hooks; both use Reforge
 and share one copy of it. RainbowBarrels replaces no file that Polychromatic
 replaces, so the two can be installed together.
 
-With Reforge, `/reforge` reported all 1,100 files active in game and the
-barrel effects worked, with no errors. That test used the previous,
-uncompressed bundles. The bundles are now Oodle-compressed like the game's
-own, with identical contents.
+Version 1.2.0 was tested in game with Reforge, alone and together with
+RainbowFlame and BurningTertium. `/reforge` reported all files active and the
+barrel effects worked, with no errors.
 
 Previous-release client testing in a regular dedicated-server mission
 confirmed the explosive-barrel effect, green fire-barrel ground fire at hue

@@ -73,5 +73,5 @@ confirmed the explosive-barrel effect, green fire-barrel ground fire at hue
 With fire customization disabled, new fires appeared stock yellow/orange.
 The direct-install path and dedicated-server-process execution have not been
 independently verified for this version. Included resources and ZIP contents
-are hash-checked; see [CHANGELOG.md](CHANGELOG.md), [LICENSE](LICENSE) and
+are hash-checked; see [the release notes](https://github.com/Vansinnet/RainbowBarrels/releases), [LICENSE](LICENSE) and
 [NOTICE](NOTICE).

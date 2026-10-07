@@ -19,7 +19,6 @@
     ],
     "documentation": [
       { "source": "README.md", "destination": "RainbowBarrels/README.md" },
-      { "source": "CHANGELOG.md", "destination": "RainbowBarrels/CHANGELOG.md" },
       { "source": "NOTICE", "destination": "RainbowBarrels/NOTICE" }
     ],
     "licenses": [

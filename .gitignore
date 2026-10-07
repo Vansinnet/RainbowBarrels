@@ -1,21 +1,33 @@
-# Extracted stock assets and offline shader research are not release payloads.
+# Standard .gitignore for every mod repository (template: tools/templates/mod.gitignore).
+# Tracked: runtime files, README/LICENSE/NOTICE, DESIGN.md, TESTING.md, RESEARCH.md, tests/, tools/,
+# resource/ (build scripts) and, for Reforge mods, reforge.json, release-layout.json, payload/ and bin/.
+# Never tracked: research output and extracted game files, build intermediates, generated files,
+# release archives and release-note files (GitHub releases are the history).
+
+# Research output and extracted stock game files
 /analysis/
-/installer/
-/resource/
-/RESEARCH.md
-/bootstrap/
-/scripts/mods/RainbowBarrels/setup.lua
+
+# Reforge build intermediates derived from game files
 /payload/inserts/
 /payload/manifest.json
-/RainbowBarrels.Setup.exe
-/setup-status-*.txt
-/bootstrap/**/bin/
-/bootstrap/**/obj/
-/bootstrap/publish/
-/.payload-build-*/
-/installer/**/bin/
-/installer/**/obj/
-/.vs/
-**/__pycache__/
+
+# Generated files
+__pycache__/
 *.pyc
-*.pdb
+*.log
+*.tmp
+*.bak
+*.luac
+*.zip
+*.7z
+
+# Local settings and editors
+.source-path.local
+.vs/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Mod-specific (keep below this line)

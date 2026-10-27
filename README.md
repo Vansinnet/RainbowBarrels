@@ -11,8 +11,8 @@ Gameplay damage, sound, networking and unrelated liquid fire are unchanged.
 ## Requirements
 
 - Darktide Mod Loader (DML) and Darktide Mod Framework (DMF), Windows x64.
-- The two original bundles must match the stock SHA-256 hashes for Steam build
-  `24735202` (Darktide executable `1.3.770.210`). When a game update changes
+- Darktide 1.13 (built from its game files). The two original bundles
+  must match the stock SHA-256 hashes the mod pins. When a game update changes
   either bundle, the corresponding redirect is skipped until the mod is updated.
 
 ## Installation
@@ -63,9 +63,12 @@ resource paths and select different effects in their hooks; both use Reforge
 and share one copy of it. RainbowBarrels replaces no file that Polychromatic
 replaces, so the two can be installed together.
 
-Version 1.2.0 was tested in game with Reforge, alone and together with
-RainbowFlame and BurningTertium. `/reforge` reported all files active and the
-barrel effects worked, with no errors.
+Version 1.2.1 was tested in game on Darktide 1.13 in a regular mission: all
+1,100 files were served, the explosive barrel turned green and red, the fire
+barrel's explosion and ground fire turned blue and yellow with the chosen hue,
+and with fire customization off the fire looked stock. RainbowFlame was not
+active during that test. Version 1.2.0 was tested together with RainbowFlame
+and BurningTertium.
 
 Previous-release client testing in a regular dedicated-server mission
 confirmed the explosive-barrel effect, green fire-barrel ground fire at hue

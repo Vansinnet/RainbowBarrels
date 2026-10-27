@@ -1,5 +1,51 @@
 # RainbowBarrels: barrel explosion resource investigation
 
+## Rebuilding the payload after a game update — 2026-10-27
+
+The authoring scripts below were pinned to build `24735202` and imported modules that no
+longer exist (`decode`, `investigate`, `parse_materials` under `docs/analysis-*`), so 62 of
+them could not run. `resource/rebuild_payload.py` replaces the whole chain with one rerunnable
+step. After a patch, run from the workspace root (Windows, game installed):
+
+    python mods/active/RainbowBarrels/resource/rebuild_payload.py
+    tools\reforge\reforge.cmd build mods\active\RainbowBarrels --game "<game folder>"
+
+It reads both stock bundles and the 18 stock material streams they point to, and regenerates
+`payload/bundles/*` and all 1,098 `payload/materials` streams; it then pins the stock bundle
+hashes in `reforge.json` (keeping `late_load`; `reforge add` would drop it). Targets are found
+by name hash and structure, not by pinned hashes: the four particles by name; their billboard
+(type-0) clouds name 8 shader materials and 5 shaderless children, whose parent pointers add
+the other 5 shader materials. Each shader material gets the `rainbow_barrels_hue` scalar (template row,
+registration in every `c_material_exports` buffer, GPU default); a full buffer grows by one
+16-byte register and the programs' metadata follows (be93, debe, e149, 62c7). Every
+colour-writing pixel program is rewritten (final RGB becomes max(r, g, b) times the hue wheel
+read from the buffer), recompiled with DXC (tools/dxc, v1.9.2609) and checked: unchanged
+signature chunks, a no-op rebuild that disassembles to the stock function, and the hue field in
+the readback reflection. Particles get 360 clones per effect (renamed clouds, custom materials,
+type-1 light ColorGraphs at visualizer offset 352, the filled fire's type-2 floor ColorGraph at
+480), ground materials 360 per-hue copies. It stops on a new material or shader version, a
+moved curve, a changed program pattern or a no-op mismatch. A report is written to
+`analysis/rebuild-<input hashes>/report.json`; `--stock <folder laid out like the game> --out
+<folder>` rebuilds from other inputs without touching the mod.
+
+Evidence: with `--stock analysis/stock-build-24735202` (both bundles, unchanged since that
+build, and the 18 retained original material streams) it reproduces **all 1,100 shipped
+payload files byte for byte**: both stored bundles match the game-tested `a0a15fcd…` and
+`7181ef9b…`, Oodle level 6 repacks them to the shipped `13935931…` and `86dbae93…`, and all
+1,098 materials are identical (`analysis/rebuild-e42f3e96b463`). A second run is identical.
+
+**Finding:** `reforge verify` (1,100 of 1,100) checks only the two bundles. Darktide 1.13.0
+changed all 18 source material streams: format 61 became 62, and every shader material got
+recompiled pixel/vertex programs and new registration groups (children changed only their
+version word; templates and defaults are unchanged). The shipped materials are therefore
+copies of the pre-1.13 materials with pre-1.13 programs. Whether 1.13.x still renders them
+correctly has not been checked in game. On 1.13.3 the pipeline accepts format 62 with the same
+layout (same buffer sizes, export offsets, 26 distinct hue programs) and builds new
+materials (`analysis/rebuild-193761808626`): bundles and `reforge.json` unchanged, all 1,098
+materials different, `reforge build --game` passes. That rebuild is **not** applied to the
+payload; it needs an in-game test first (explosive and fire barrel at two hues, ground fire,
+`auspex hooks --mod RainbowBarrels`).
+
 Status: a hash-pinned local development candidate is installed for testing.
 The physical no-op package rendered both barrel explosions normally in one
 user-reported regular mission. A subsequent test found the explosive-barrel

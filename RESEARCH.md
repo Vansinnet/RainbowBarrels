@@ -42,9 +42,19 @@ copies of the pre-1.13 materials with pre-1.13 programs. Whether 1.13.x still re
 correctly has not been checked in game. On 1.13.3 the pipeline accepts format 62 with the same
 layout (same buffer sizes, export offsets, 26 distinct hue programs) and builds new
 materials (`analysis/rebuild-193761808626`): bundles and `reforge.json` unchanged, all 1,098
-materials different, `reforge build --game` passes. That rebuild is **not** applied to the
-payload; it needs an in-game test first (explosive and fire barrel at two hues, ground fire,
-`auspex hooks --mod RainbowBarrels`).
+materials different, `reforge build --game` passes. That rebuild is now the payload.
+
+In game the same day (Darktide 1.13.0-b819406, regular mission, Vortex deploy of exactly the
+1,113 release files, byte-identical to the release ZIP): the log reported `resource redirects
+served: 1100 of 1100` and no RainbowBarrels error. The user reported blue ground fire with a blue
+explosion and light and no orange patches (Fire 240), a green explosive barrel (Explosive 120),
+yellow ground fire after changing to Fire 60, a red explosive barrel at Explosive 0, and stock
+orange fire with Fire barrels switched off. `auspex hooks --mod RainbowBarrels` showed all five
+module/global hooks DMF-hooked and shared as expected (vfx_swapper, danger_zone, veil_shield);
+`Explosion.create_husk_explosion` reads `owner_missing` only because the hook is on the required
+module table, not a global, and the explosions recoloured. Not covered: a normal grenade, a
+non-barrel `prop_fire`, VFX Swapper's fire-barrel replacement enabled, mission transitions, and
+RainbowFlame active at the same time (it was disabled in that session).
 
 Status: a hash-pinned local development candidate is installed for testing.
 The physical no-op package rendered both barrel explosions normally in one

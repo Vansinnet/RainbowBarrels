@@ -63,6 +63,10 @@ resource paths and select different effects in their hooks; both use Reforge
 and share one copy of it. RainbowBarrels replaces no file that Polychromatic
 replaces, so the two can be installed together.
 
+Version 1.2.2 ships Reforge library 3, which serves replaced game files as
+soon as the mod loads. Tested on Darktide 1.13.0 at startup: all 1,100 files
+served; missions were not retested.
+
 Version 1.2.1 was tested in game on Darktide 1.13 in a regular mission: all
 1,100 files were served, the explosive barrel turned green and red, the fire
 barrel's explosion and ground fire turned blue and yellow with the chosen hue,
